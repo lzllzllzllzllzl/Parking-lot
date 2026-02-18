@@ -1,0 +1,21 @@
+{
+  "short_name": "SmartPark",
+  "name": "SmartPark Q-AI System",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2333/2333043.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2333/2333043.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#4f46e5",
+  "background_color": "#f8fafc",
+  "orientation": "portrait"
+}

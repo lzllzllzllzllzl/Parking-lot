@@ -1,0 +1,7 @@
+{
+  "name": "SmartPark Q-AI",
+  "description": "An intelligent parking prediction system using Q-Learning and Gemini AI to optimize urban parking decisions.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
