@@ -2,8 +2,16 @@ import { GoogleGenAI } from "@google/genai";
 import { PredictionResult, WeatherCondition, DayType } from "../types";
 
 // Helper to safely get the API key
+// In Vite/Browser environment, process.env is usually undefined. 
+// Since we switched to Doubao (Volcengine), this service is largely unused, 
+// but we patch it to prevent "process is not defined" errors.
 const getApiKey = (): string | undefined => {
-  return process.env.API_KEY;
+  try {
+    // Check if process exists (Node) or import.meta.env (Vite)
+    return typeof process !== 'undefined' ? process.env?.API_KEY : undefined;
+  } catch (e) {
+    return undefined;
+  }
 };
 
 export const getParkingAdvice = async (
