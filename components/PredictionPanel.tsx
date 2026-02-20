@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { WeatherCondition, DayType, PredictionResult } from '../types';
-import { CloudRain, Sun, Cloud, CloudLightning, Calendar, Clock, Sparkles } from 'lucide-react';
-import { getParkingAdvice } from '../services/gemini';
+import { CloudRain, Sun, Clock, Sparkles } from 'lucide-react';
+import { getParkingAdvice } from '../services/doubao';
 
 interface Props {
   onPredict: (time: string, weather: WeatherCondition, dayType: DayType) => PredictionResult;
@@ -24,6 +24,7 @@ const PredictionPanel: React.FC<Props> = ({ onPredict }) => {
   const fetchAdvice = async () => {
     if (!result) return;
     setLoadingAdvice(true);
+    // Call the new Volcengine/Doubao service
     const txt = await getParkingAdvice(result, time, weather, dayType);
     setAdvice(txt);
     setLoadingAdvice(false);
@@ -46,7 +47,7 @@ const PredictionPanel: React.FC<Props> = ({ onPredict }) => {
               type="time" 
               value={time}
               onChange={(e) => setTime(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none text-slate-700 font-medium"
+              className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-50 outline-none text-slate-700 font-medium"
             />
           </div>
         </div>
@@ -138,7 +139,7 @@ const PredictionPanel: React.FC<Props> = ({ onPredict }) => {
                    <>Processing...</>
                  ) : (
                    <>
-                     <Sparkles className="w-4 h-4" /> Ask AI Assistant
+                     <Sparkles className="w-4 h-4" /> Ask AI Assistant (Doubao)
                    </>
                  )}
                </button>
